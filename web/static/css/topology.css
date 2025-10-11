@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5;
+}
+
+.topology-container {
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.links line {
+    stroke-opacity: 0.8;
+}
+
+.links line:hover {
+    stroke-opacity: 1;
+    stroke-width: 3px !important;
+}
+
+.nodes g {
+    cursor: pointer;
+}
+
+.nodes g:hover rect,
+.nodes g:hover circle {
+    filter: brightness(1.2);
+    stroke-width: 3px;
+}
+
+.controls {
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #ecf0f1;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.controls button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    background-color: #2980b9;
+}
+
+.controls select {
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+    margin-left: 10px;
+}

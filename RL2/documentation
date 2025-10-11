@@ -1,0 +1,53 @@
+# Agent2 Future Enhancement Documentation
+
+## Current Implementation
+- **GNN Type**: GraphSAGE (no attention mechanism)
+- **Features**: Minimal feature set for each head
+- **Reward**: MLU-based with threshold rewards
+
+## Recommended Future Enhancements
+
+### 1. Enhanced Features (Priority: High)
+
+#### Switch Level (Head 1)
+- **Current**: MLU only
+- **Add**:
+  - Neighbor switch MLU (graph context)
+  - Total flow count on switch
+  - Switch capacity utilization
+  - Historical MLU trend (last 5 samples)
+  - Number of congested ports
+
+#### Port Level (Head 2)
+- **Current**: [utilization, flow_count]
+- **Add**:
+  - Port capacity/bandwidth
+  - Link delay
+  - Packet loss rate
+  - Queue length
+  - Port type (access/trunk)
+
+#### Flow Level (Head 3)
+- **Current**: [rate, dst_dpid]
+- **Add**:
+  - Flow priority/QoS class
+  - Flow duration/age
+  - Path length
+  - Alternative paths available
+  - Flow variability (standard deviation)
+
+#### New Port Level (Head 4)
+- **Current**: utilization only
+- **Add**:
+  - Available bandwidth
+  - Link quality metrics
+  - Distance to destination
+  - Number of hops to destination
+
+### 2. GNN Architecture Upgrades (Priority: Medium)
+
+#### Phase 1: Enhanced GraphSAGE
+```python
+# Add skip connections
+# Add batch normalization
+# Increase layers for better representation

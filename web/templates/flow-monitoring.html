@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flow Monitoring - SDN Dashboard</title>
+    <link rel="stylesheet" href="/web/static/css/flow-monitoring.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Flow Monitoring Dashboard</h1>
+        <p>Real-time flow rate monitoring and analysis</p>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/topology-view">Topology</a>
+        <a href="/flow-monitoring">Flow Monitoring</a>
+        <a href="/agent-control">Agent Control</a>
+        <button class="refresh-btn" onclick="refreshFlowData()">Refresh Data</button>
+    </div>
+    
+    <div class="monitoring-grid">
+        <div class="monitor-panel">
+            <h3>Flow Rates Overview</h3>
+            <div id="flowRatesTable"></div>
+        </div>
+        
+        <div class="monitor-panel">
+            <h3>Tracked Flows</h3>
+            <div id="trackedFlowsTable"></div>
+        </div>
+    </div>
+    
+    <div class="chart-container">
+        <h3>Flow Rates Over Time</h3>
+        <div id="flowRateChart" style="height: 400px;"></div>
+    </div>
+    
+    <div class="chart-container">
+        <h3>Path Flow Rates</h3>
+        <div id="pathFlowRateChart" style="height: 400px;"></div>
+    </div>
+    
+    <div class="chart-container">
+        <h3>Path Rewards</h3>
+        <div id="pathRewardsChart" style="height: 400px;"></div>
+    </div>
+    
+    <script>
+        function refreshFlowData() {
+            loadFlowRatesTable();
+            loadTrackedFlowsTable();
+            loadFlowRateChart();
+            loadPathFlowRateChart();
+            loadPathRewardsChart();
+        }
+        
+        function loadFlowRatesTable() {
+            $.get('/api/v1/flows/rates', function(data) {
+                const flowRates = data.flow_rates || [];
+                let tableHtml = '<table class="flow-table"><thead><tr><th>Flow ID</th><th>Rate (pps)</th><th>Bytes/sec</th><th>Last Updated</th></tr></thead><tbody>';
+                
+                if (flowRates.length === 0) {
+                    tableHtml += '<tr><td colspan="4">No flow rate data available</td></tr>';
+                } else {
+                    flowRates.forEach(flow => {
+                        tableHtml += `<tr>
+                            <td>${flow.flow_id || 'N/A'}</td>
+                            <td>${flow.packets_per_sec || 0}</td>
+                            <td>${flow.bytes_per_sec || 0}</td>
+                            <td>${flow.timestamp || 'N/A'}</td>
+                        </tr>`;
+                    });
+                }
+                
+                tableHtml += '</tbody></table>';
+                $('#flowRatesTable').html(tableHtml);
+            }).fail(function() {
+                $('#flowRatesTable').html('<p>Failed to load flow rates data</p>');
+            });
+        }
+        
+        function loadTrackedFlowsTable() {
+            $.get('/api/v1/flows/tracked', function(data) {
+                const trackedFlows = data.tracked_flows || [];
+                let tableHtml = '<table class="flow-table"><thead><tr><th>Cookie</th><th>Path</th><th>Status</th></tr></thead><tbody>';
+                
+                if (trackedFlows.length === 0) {
+                    tableHtml += '<tr><td colspan="3">No tracked flows</td></tr>';
+                } else {
+                    trackedFlows.forEach(flow => {
+                        tableHtml += `<tr>
+                            <td>${flow.cookie || 'N/A'}</td>
+                            <td>${flow.path || 'N/A'}</td>
+                            <td>${flow.status || 'Active'}</td>
+                        </tr>`;
+                    });
+                }
+                
+                tableHtml += '</tbody></table>';
+                $('#trackedFlowsTable').html(tableHtml);
+            }).fail(function() {
+                $('#trackedFlowsTable').html('<p>Failed to load tracked flows data</p>');
+            });
+        }
+        
+        function loadFlowRateChart() {
+            $.get('/api/v1/flows/rates', function(data) {
+                const flowRates = data.flow_rates || [];
+                
+                if (flowRates.length === 0) {
+                    $('#flowRateChart').html('<p style="text-align: center; padding: 50px;">No flow rate data available</p>');
+                    return;
+                }
+                
+                const timestamps = flowRates.map(f => f.timestamp || Date.now());
+                const rates = flowRates.map(f => f.packets_per_sec || 0);
+                
+                const trace = {
+                    x: timestamps,
+                    y: rates,
+                    type: 'scatter',
+                    mode: 'lines+markers',
+                    line: { color: '#e74c3c' },
+                    name: 'Flow Rate'
+                };
+                
+                const layout = {
+                    title: 'Flow Rates Over Time',
+                    xaxis: { title: 'Time' },
+                    yaxis: { title: 'Rate (packets/sec)' },
+                    margin: { l: 50, r: 50, t: 50, b: 50 }
+                };
+                
+                Plotly.newPlot('flowRateChart', [trace], layout);
+            }).fail(function() {
+                $('#flowRateChart').html('<p style="text-align: center; padding: 50px;">Failed to load flow rate chart</p>');
+            });
+        }
+        
+        function loadPathFlowRateChart() {
+            $.get('/api/v1/flows/path-rates', function(data) {
+                const pathRates = data.path_flow_rates || [];
+                
+                if (pathRates.length === 0) {
+                    $('#pathFlowRateChart').html('<p style="text-align: center; padding: 50px;">No path flow rate data available</p>');
+                    return;
+                }
+                
+                const pathIds = Object.keys(pathRates);
+                const rates = pathIds.map(pathId => pathRates[pathId].rate || 0);
+                
+                const trace = {
+                    x: pathIds,
+                    y: rates,
+                    type: 'bar',
+                    marker: { color: '#3498db' },
+                    name: 'Path Flow Rate'
+                };
+                
+                const layout = {
+                    title: 'Flow Rates by Path',
+                    xaxis: { title: 'Path ID' },
+                    yaxis: { title: 'Rate (packets/sec)' },
+                    margin: { l: 50, r: 50, t: 50, b: 50 }
+                };
+                
+                Plotly.newPlot('pathFlowRateChart', [trace], layout);
+            }).fail(function() {
+                $('#pathFlowRateChart').html('<p style="text-align: center; padding: 50px;">Failed to load path flow rate chart</p>');
+            });
+        }
+        
+        function loadPathRewardsChart() {
+            $.get('/api/v1/flows/rewards', function(data) {
+                const pathRewards = data.path_rewards || [];
+                
+                if (pathRewards.length === 0) {
+                    $('#pathRewardsChart').html('<p style="text-align: center; padding: 50px;">No path rewards data available</p>');
+                    return;
+                }
+                
+                const pathIds = Object.keys(pathRewards);
+                const rewards = pathIds.map(pathId => pathRewards[pathId].reward || 0);
+                
+                const trace = {
+                    x: pathIds,
+                    y: rewards,
+                    type: 'bar',
+                    marker: { color: '#2ecc71' },
+                    name: 'Path Reward'
+                };
+                
+                const layout = {
+                    title: 'Path Rewards',
+                    xaxis: { title: 'Path ID' },
+                    yaxis: { title: 'Reward Value' },
+                    margin: { l: 50, r: 50, t: 50, b: 50 }
+                };
+                
+                Plotly.newPlot('pathRewardsChart', [trace], layout);
+            }).fail(function() {
+                $('#pathRewardsChart').html('<p style="text-align: center; padding: 50px;">Failed to load path rewards chart</p>');
+            });
+        }
+        
+        // Auto-refresh every 15 seconds
+        setInterval(refreshFlowData, 15000);
+        
+        // Initial load
+        refreshFlowData();
+    </script>
+</body>
+</html>

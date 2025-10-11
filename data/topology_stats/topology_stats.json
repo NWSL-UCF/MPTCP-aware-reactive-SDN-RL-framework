@@ -1,0 +1,126 @@
+{
+    "links": {
+        "s1-s2": {
+            "node1": "s1",
+            "port1": "s1-eth1",
+            "node2": "s2",
+            "port2": "s2-eth1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s1-s3": {
+            "node1": "s1",
+            "port1": "s1-eth2",
+            "node2": "s3",
+            "port2": "s3-eth1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s1-s4": {
+            "node1": "s1",
+            "port1": "s1-eth3",
+            "node2": "s4",
+            "port2": "s4-eth1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s2-s3": {
+            "node1": "s2",
+            "port1": "s2-eth2",
+            "node2": "s3",
+            "port2": "s3-eth2",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s2-s4": {
+            "node1": "s2",
+            "port1": "s2-eth3",
+            "node2": "s4",
+            "port2": "s4-eth2",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s3-s4": {
+            "node1": "s3",
+            "port1": "s3-eth3",
+            "node2": "s4",
+            "port2": "s4-eth3",
+            "bandwidth": 10,
+            "delay": "0ms"
+        }
+    },
+    "ports": {
+        "s1-port1": {
+            "connected_to": "s2-port1",
+            "dst-dpid": "s2",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s1-port2": {
+            "connected_to": "s3-port1",
+            "dst-dpid": "s3",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s1-port3": {
+            "connected_to": "s4-port1",
+            "dst-dpid": "s4",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s2-port1": {
+            "connected_to": "s1-port1",
+            "dst-dpid": "s1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s2-port2": {
+            "connected_to": "s3-port2",
+            "dst-dpid": "s3",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s2-port3": {
+            "connected_to": "s4-port2",
+            "dst-dpid": "s4",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s3-port1": {
+            "connected_to": "s1-port2",
+            "dst-dpid": "s1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s3-port2": {
+            "connected_to": "s2-port2",
+            "dst-dpid": "s2",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s3-port3": {
+            "connected_to": "s4-port3",
+            "dst-dpid": "s4",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s4-port1": {
+            "connected_to": "s1-port3",
+            "dst-dpid": "s1",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s4-port2": {
+            "connected_to": "s2-port3",
+            "dst-dpid": "s2",
+            "bandwidth": 10,
+            "delay": "0ms"
+        },
+        "s4-port3": {
+            "connected_to": "s3-port3",
+            "dst-dpid": "s3",
+            "bandwidth": 10,
+            "delay": "0ms"
+        }
+    }
+}

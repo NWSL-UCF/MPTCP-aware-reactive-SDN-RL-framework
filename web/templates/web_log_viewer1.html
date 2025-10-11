@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryu Controller - Live Logs</title>
+    <style>
+    /* Complete CSS */
+    body { 
+        font-family: Arial, sans-serif; 
+        background: #1a1a1a; 
+        color: white; 
+        margin: 0; 
+        padding: 0; 
+        overflow-x: hidden;
+    }
+    
+    .header { 
+        background: #2d2d2d; 
+        padding: 1rem; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        border-bottom: 1px solid #444;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .header h1 {
+        margin: 0;
+        color: #4CAF50;
+        font-size: 1.5rem;
+    }
+    
+    .controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        min-width: 120px;
+    }
+    
+    .filter-group label {
+        font-size: 0.8rem;
+        color: #ccc;
+        font-weight: bold;
+    }
+    
+    .filter-group select,
+    .filter-group input {
+        padding: 0.5rem;
+        background: #333;
+        color: white;
+        border: 1px solid #555;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    
+    .filter-group select:focus,
+    .filter-group input:focus {
+        outline: none;
+        border-color: #4CAF50;
+    }
+    
+    .quick-filters {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    
+    .quick-filter {
+        padding: 0.4rem 0.8rem;
+        background: #444;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+        transition: background 0.2s;
+    }
+    
+    .quick-filter:hover {
+        background: #555;
+    }
+    
+    .quick-filter.selected {
+        background: #4CAF50;
+    }
+    
+    .quick-filter.error {
+        background: #f44336;
+    }
+    
+    .quick-filter.warning {
+        background: #ff9800;
+    }
+    
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 1rem;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.2s;
+    }
+    
+    .action-btn:hover {
+        background: #45a049;
+    }
+    
+    .clear-btn {
+        background: #f44336;
+    }
+    
+    .clear-btn:hover {
+        background: #d32f2f;
+    }
+    
+    .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff4444;
+        margin-left: 1rem;
+        transition: background 0.3s;
+    }
+    
+    .status-indicator.connected {
+        background: #4CAF50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    }
+    
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 80px);
+    }
+    
+    .tabs {
+        background: #2d2d2d;
+        display: flex;
+        border-bottom: 1px solid #444;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        scrollbar-color: #666 #2d2d2d;
+    }
+    
+    .tab {
+        padding: 0.75rem 1.5rem;
+        background: #333;
+        border: none;
+        color: #ccc;
+        cursor: pointer;
+        border-right: 1px solid #444;
+        white-space: nowrap;
+        position: relative;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .tab:hover {
+        background: #3a3a3a;
+        color: #e0e0e0;
+    }
+    
+    .tab.active {
+        background: #4CAF50;
+        color: white;
+    }
+    
+    .tab-count {
+        background: #666;
+        color: white;
+        border-radius: 12px;
+        padding: 2px 8px;
+        font-size: 0.8rem;
+        min-width: 20px;
+        text-align: center;
+    }
+    
+    .tab.active .tab-count {
+        background: rgba(255,255,255,0.3);
+    }
+    
+    .log-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0; /* Important for flex scrolling */
+    }
+    
+    .log-header {
+        background: #333;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #444;
+    }
+    
+    .log-header-left h3 {
+        margin: 0;
+        color: #4CAF50;
+        font-size: 1rem;
+    }
+    
+    .stats {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+    
+    .log-content {
+        flex: 1;
+        overflow-y: auto;
+        overflow-x: hidden; /* Prevent horizontal scroll */
+        background: #1a1a1a;
+        font-family: 'Segoe UI', 'Consolas', 'Courier New', monospace;
+        font-size: 13px;
+        padding: 0;
+        line-height: 1.5;
+        scroll-behavior: smooth; /* Smooth scrolling */
+        max-height: calc(100vh - 200px); /* Ensure fixed height */
+    }
+
+    .log-entry {
+        display: grid;
+        grid-template-columns: 160px 140px 90px 1fr; /* Wider columns */
+        gap: 15px; /* More spacing */
+        padding: 12px 16px; /* More padding */
+        border-bottom: 1px solid #333;
+        transition: background 0.1s;
+        min-height: 40px; /* Minimum height for better spacing */
+        align-items: center; /* Center content vertically */
+    }
+    
+    .log-entry:hover {
+        background: #2a2a2a;
+    }
+    
+    .log-timestamp {
+        color: #999;
+        font-size: 12px; /* Smaller timestamp */
+        font-weight: 500; /* Medium weight for better readability */
+    }
+    
+    .log-module {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 13px; /* Slightly larger module name */
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .log-level {
+        font-weight: bold;
+        text-align: center;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        min-width: 70px; /* Minimum width for level badges */
+    }
+    
+    .log-level.DEBUG { background: #607d8b; color: white; }
+    .log-level.INFO { background: #2196f3; color: white; }
+    .log-level.WARNING { background: #ff9800; color: white; }
+    .log-level.ERROR { background: #f44336; color: white; }
+    .log-level.CRITICAL { background: #9c27b0; color: white; }
+    
+    .log-message {
+        color: #f0f0f0;
+        word-wrap: break-word;
+        line-height: 1.4;
+        font-size: 13px; /* Consistent font size */
+        padding-right: 10px; /* Right padding for better spacing */
+    }
+    
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        color: #888;
+        font-style: italic;
+    }
+    
+    .loading::before {
+        content: "⟳ ";
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+    
+    .no-logs {
+        text-align: center;
+        padding: 3rem;
+        color: #666;
+        font-style: italic;
+    }
+    
+    .error {
+        text-align: center;
+        padding: 2rem;
+        color: #f44336;
+        background: rgba(244, 67, 54, 0.1);
+        border: 1px solid rgba(244, 67, 54, 0.3);
+        border-radius: 4px;
+        margin: 1rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 968px) {
+        .header {
+            flex-direction: column;
+            gap: 1rem;
+            padding: 0.75rem;
+        }
+        
+        .controls {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .main-container {
+            height: calc(100vh - 120px);
+        }
+        
+        .log-entry {
+            grid-template-columns: 1fr;
+            gap: 5px;
+        }
+        
+        .log-entry > div {
+            padding: 2px 0;
+        }
+    }
+    </style>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Ryu Controller - Live Logs</h1>
+        
+        <div class="controls">
+            <div class="filter-group">
+                <label>Level:</label>
+                <select id="levelFilter">
+                    <option value="">All Levels</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="INFO">INFO</option>
+                    <option value="WARNING">WARNING</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="CRITICAL">CRITICAL</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Search:</label>
+                <input type="text" id="searchFilter" placeholder="Search messages...">
+            </div>
+            
+            <div class="filter-group">
+                <label>Quick Filters:</label>
+                <div class="quick-filters">
+                    <button onclick="filterByLevel('ERROR')" class="quick-filter error">Errors Only</button>
+                    <button onclick="filterByLevel('WARNING')" class="quick-filter warning">Warnings+</button>
+                    <button onclick="clearAllFilters()" class="quick-filter clear">Clear All</button>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button onclick="clearLogs()" class="action-btn clear-btn">Clear Logs</button>
+                <button onclick="toggleAutoScroll()" id="autoScrollBtn" class="action-btn">Auto-scroll: ON</button>
+                <button onclick="refreshLogs()" class="action-btn">Refresh</button>
+                <button onclick="testScroll()" class="action-btn" style="background: #ff9800;">Test Scroll</button>
+            </div>
+            
+            <div class="status-indicator" id="statusIndicator" title="Connection status"></div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="tabs" id="tabContainer">
+            <!-- Tabs will be populated dynamically -->
+        </div>
+        
+        <div class="log-container">
+            <div class="log-header">
+                <div class="log-header-left">
+                    <h3 id="currentModule">All Modules</h3>
+                </div>
+                <div class="stats">
+                    <span>Total: <span id="totalLogs">0</span></span>
+                    <span>Filtered: <span id="visibleLogs">0</span></span>
+                    <span class="rate">Rate: <span id="logRate">0/sec</span></span>
+                </div>
+            </div>
+            <div class="log-content" id="logContent">
+                <div class="loading">Connecting to log stream...</div>
+            </div>
+            <button id="scrollToBottomBtn" onclick="LogViewer.scrollToBottom()" 
+                    style="position: absolute; bottom: 20px; right: 20px; background: #4CAF50; color: white; border: none; padding: 10px 15px; border-radius: 25px; cursor: pointer; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.3); display: none;">
+                ↓ Scroll to Bottom
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Complete LogViewer Implementation
+        const LogViewer = {
+            allLogs: [],
+            filteredLogs: [],
+            modules: {},
+            currentModule: 'all',
+            autoScroll: true,
+            eventSource: null,
+            
+            config: {
+                maxDisplayLogs: 500,
+                moduleUpdateInterval: 5000,
+                reconnectDelay: 5000
+            }
+        };
+
+        // Initialize when DOM loads
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Initializing Ryu Log Viewer...');
+            LogViewer.initializeApplication();
+        });
+
+        LogViewer.initializeApplication = function() {
+            try {
+                this.setupFilters();
+                this.loadExistingLogs();
+                this.setupEventSource();
+                this.updateStats();
+                console.log('✅ Log Viewer initialized successfully');
+            } catch (error) {
+                console.error('❌ Failed to initialize Log Viewer:', error);
+                this.showError('Failed to initialize application');
+            }
+        };
+
+        LogViewer.loadExistingLogs = function() {
+            console.log('📥 Loading existing logs...');
+            fetch('/logs')
+                .then(response => {
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    return response.json();
+                })
+                .then(data => {
+                    console.log(`📦 Loaded ${data.logs.length} existing logs`);
+                    
+                    // Clear loading message
+                    const logContent = document.getElementById('logContent');
+                    if (logContent) {
+                        logContent.innerHTML = '';
+                    }
+                    
+                    // Process each log
+                    this.allLogs = [];
+                    this.modules = {};
+                    
+                    data.logs.forEach(logEntry => {
+                        this.addLogEntry(logEntry, false); // false = don't update display yet
+                    });
+                    
+                    // Update display once
+                    this.filterAndDisplayLogs();
+                    this.updateTabs();
+                    this.updateStats();
+                    
+                    console.log('✅ Existing logs loaded successfully');
+                })
+                .catch(error => {
+                    console.error('❌ Error loading existing logs:', error);
+                    this.showError('Failed to load logs');
+                });
+        };
+
+        LogViewer.addLogEntry = function(logEntry, updateDisplay = true) {
+            // Add to all logs
+            this.allLogs.push(logEntry);
+            
+            // Update module counts
+            if (this.modules[logEntry.module] !== undefined) {
+                this.modules[logEntry.module]++;
+            } else {
+                this.modules[logEntry.module] = 1;
+            }
+            
+            // Update displays if requested
+            if (updateDisplay) {
+                this.filterAndDisplayLogs();
+                this.updateTabs();
+                this.updateStats();
+            }
+        };
+
+        LogViewer.filterAndDisplayLogs = function() {
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            if (!levelFilter || !searchFilter) {
+                console.log('❌ Missing filter elements');
+                return;
+            }
+            
+            const levelValue = levelFilter.value;
+            const searchValue = searchFilter.value.toLowerCase();
+            
+            console.log(`🔍 Filtering: Level=${levelValue}, Search="${searchValue}"`);
+            
+            this.filteredLogs = this.allLogs.filter(log => {
+                const levelMatch = !levelValue || log.level === levelValue;
+                const searchMatch = !searchValue || 
+                    log.message.toLowerCase().includes(searchValue) ||
+                    log.module.toLowerCase().includes(searchValue);
+                
+                return levelMatch && searchMatch;
+            });
+            
+            console.log(`📊 Filtered ${this.filteredLogs.length} logs from ${this.allLogs.length} total`);
+            this.displayLogs();
+        };
+
+        LogViewer.displayLogs = function() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) return;
+            
+            if (this.filteredLogs.length === 0) {
+                logContent.innerHTML = '<div class="no-logs">No logs match the current filters</div>';
+                return;
+            }
+            
+            // Remember scroll position
+            const isScrolledToBottom = logContent.scrollHeight - logContent.clientHeight <= logContent.scrollTop + 1;
+            
+            // Limit displayed logs for performance
+            const logsToDisplay = this.filteredLogs.slice(-this.config.maxDisplayLogs);
+            
+            logContent.innerHTML = logsToDisplay.map(log => `
+                <div class="log-entry" data-level="${log.level}" data-module="${log.module}">
+                    <div class="log-timestamp">${log.timestamp}</div>
+                    <div class="log-module">${log.module}</div>
+                    <div class="log-level ${log.level}">${log.level}</div>
+                    <div class="log-message">${this.escapeHtml(log.message)}</div>
+                </div>
+            `).join('');
+            
+            // Auto-scroll to bottom if enabled or if user was already at bottom
+            if (this.autoScroll || isScrolledToBottom) {
+                setTimeout(() => {
+                    this.scrollToBottom();
+                }, 10); // Small delay to ensure content is rendered
+            }
+            
+            this.updateStats();
+        };
+
+        // Improved scroll function
+        // Improved scroll to bottom function with debugging
+        LogViewer.scrollToBottom = function() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) {
+                console.log('❌ logContent element not found');
+                return;
+            }
+            
+            // Force scroll to bottom with multiple methods
+            setTimeout(() => {
+                logContent.scrollTop = logContent.scrollHeight;
+                console.log(`📜 Scrolled to bottom: ${logContent.scrollTop}/${logContent.scrollHeight}`);
+            }, 50);
+            
+            // Backup method
+            setTimeout(() => {
+                logContent.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }, 100);
+        };
+
+        // Improved display function with forced auto-scroll
+        LogViewer.displayLogs = function() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) return;
+            
+            if (this.filteredLogs.length === 0) {
+                logContent.innerHTML = '<div class="no-logs">No logs match the current filters</div>';
+                return;
+            }
+            
+            // Limit displayed logs for performance
+            const logsToDisplay = this.filteredLogs.slice(-this.config.maxDisplayLogs);
+            
+            logContent.innerHTML = logsToDisplay.map(log => `
+                <div class="log-entry" data-level="${log.level}" data-module="${log.module}">
+                    <div class="log-timestamp">${log.timestamp}</div>
+                    <div class="log-module">${log.module}</div>
+                    <div class="log-level ${log.level}">${log.level}</div>
+                    <div class="log-message">${this.escapeHtml(log.message)}</div>
+                </div>
+            `).join('');
+            
+            // ALWAYS scroll to bottom if auto-scroll is enabled
+            if (this.autoScroll) {
+                console.log('🔄 Auto-scroll enabled, scrolling to bottom...');
+                this.forceScrollToBottom();
+            }
+            
+            this.updateStats();
+        };
+
+        // Force scroll with multiple attempts
+        LogViewer.forceScrollToBottom = function() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) return;
+            
+            // Immediate scroll
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            // Multiple delayed attempts to ensure it works
+            setTimeout(() => {
+                logContent.scrollTop = logContent.scrollHeight;
+                console.log(`📜 Force scroll attempt 1: ${logContent.scrollTop}/${logContent.scrollHeight}`);
+            }, 10);
+            
+            setTimeout(() => {
+                logContent.scrollTop = logContent.scrollHeight;
+                console.log(`📜 Force scroll attempt 2: ${logContent.scrollTop}/${logContent.scrollHeight}`);
+            }, 50);
+            
+            setTimeout(() => {
+                logContent.scrollTop = logContent.scrollHeight;
+                console.log(`📜 Force scroll attempt 3: ${logContent.scrollTop}/${logContent.scrollHeight}`);
+            }, 100);
+        };
+
+        // Updated addLogEntry to ensure scroll happens
+        LogViewer.addLogEntry = function(logEntry, updateDisplay = true) {
+            // Add to all logs
+            this.allLogs.push(logEntry);
+            
+            // Update module counts
+            if (this.modules[logEntry.module] !== undefined) {
+                this.modules[logEntry.module]++;
+            } else {
+                this.modules[logEntry.module] = 1;
+            }
+            
+            // Update displays if requested
+            if (updateDisplay) {
+                this.filterAndDisplayLogs();
+                this.updateTabs();
+                this.updateStats();
+                
+                // Force scroll after adding new log
+                if (this.autoScroll) {
+                    console.log('🆕 New log added, forcing scroll...');
+                    setTimeout(() => {
+                        this.forceScrollToBottom();
+                    }, 200);
+                }
+            }
+        };
+
+        // Add scroll indicator
+        LogViewer.updateScrollIndicator = function() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) return;
+            
+            const isAtBottom = logContent.scrollHeight - logContent.clientHeight <= logContent.scrollTop + 5;
+            
+            // You can add a visual indicator here if needed
+            if (!isAtBottom && this.filteredLogs.length > 0) {
+                // Show "scroll to bottom" indicator
+                console.log('📍 Not at bottom, logs may be hidden');
+            }
+        };
+
+        LogViewer.updateTabs = function() {
+            const tabContainer = document.getElementById('tabContainer');
+            if (!tabContainer) return;
+            
+            const tabs = [
+                { id: 'all', name: 'All', count: this.allLogs.length, isAll: true }
+            ];
+            
+            // Sort modules by activity level
+            const sortedModules = Object.entries(this.modules)
+                .filter(([module, count]) => count > 0)
+                .sort((a, b) => b[1] - a[1]);
+            
+            sortedModules.forEach(([module, count]) => {
+                tabs.push({
+                    id: module,
+                    name: module,
+                    count: count,
+                    isAll: false
+                });
+            });
+            
+            tabContainer.innerHTML = tabs.map(tab => `
+                <button class="tab ${this.currentModule === tab.id ? 'active' : ''}" 
+                        onclick="LogViewer.selectModule('${tab.id}')"
+                        title="${tab.isAll ? 'Show all logs' : `Show only ${tab.name} logs`}">
+                    ${tab.name}
+                    <span class="tab-count">${tab.count}</span>
+                </button>
+            `).join('');
+        };
+
+        LogViewer.selectModule = function(moduleId) {
+            this.currentModule = moduleId;
+            
+            const currentModuleSpan = document.getElementById('currentModule');
+            if (currentModuleSpan) {
+                currentModuleSpan.textContent = moduleId === 'all' ? 'All Modules' : moduleId;
+            }
+            
+            // Filter logs by module
+            if (moduleId === 'all') {
+                this.filterAndDisplayLogs();
+            } else {
+                this.filteredLogs = this.allLogs.filter(log => log.module === moduleId);
+                this.displayLogs();
+            }
+            
+            this.updateTabs();
+        };
+
+        LogViewer.setupFilters = function() {
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            if (levelFilter) {
+                levelFilter.addEventListener('change', () => this.filterAndDisplayLogs());
+            }
+            if (searchFilter) {
+                searchFilter.addEventListener('input', () => this.filterAndDisplayLogs());
+            }
+        };
+
+        LogViewer.setupEventSource = function() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            
+            if (this.eventSource) {
+                this.eventSource.close();
+            }
+            
+            console.log('🔌 Connecting to event stream...');
+            this.eventSource = new EventSource('/events');
+            
+            this.eventSource.onopen = () => {
+                if (statusIndicator) statusIndicator.classList.add('connected');
+                console.log('✅ Connected to log stream');
+            };
+            
+            this.eventSource.onmessage = (event) => {
+                try {
+                    const logEntry = JSON.parse(event.data);
+                    if (logEntry.type !== 'connected') {
+                        this.addLogEntry(logEntry);
+                    }
+                } catch (error) {
+                    console.error('Error parsing log entry:', error);
+                }
+            };
+            
+            this.eventSource.onerror = () => {
+                if (statusIndicator) statusIndicator.classList.remove('connected');
+                console.log('🔄 Connection lost, retrying...');
+                
+                setTimeout(() => {
+                    this.setupEventSource();
+                }, this.config.reconnectDelay);
+            };
+        };
+
+        LogViewer.updateStats = function() {
+            const totalLogsSpan = document.getElementById('totalLogs');
+            const visibleLogsSpan = document.getElementById('visibleLogs');
+            
+            if (totalLogsSpan) totalLogsSpan.textContent = this.allLogs.length;
+            if (visibleLogsSpan) visibleLogsSpan.textContent = this.filteredLogs.length;
+        };
+
+        LogViewer.scrollToBottom = function() {
+            const logContent = document.getElementById('logContent');
+            if (logContent) {
+                logContent.scrollTop = logContent.scrollHeight;
+            }
+        };
+
+        LogViewer.escapeHtml = function(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        };
+
+        LogViewer.showError = function(message) {
+            const logContent = document.getElementById('logContent');
+            if (logContent) {
+                logContent.innerHTML = `<div class="error">⚠️ ${message}</div>`;
+            }
+            console.error('LogViewer Error:', message);
+        };
+
+        // Global functions for button clicks
+        function clearLogs() {
+            LogViewer.allLogs = [];
+            LogViewer.filteredLogs = [];
+            LogViewer.modules = {};
+            LogViewer.displayLogs();
+            LogViewer.updateTabs();
+            LogViewer.updateStats();
+        }
+
+        function toggleAutoScroll() {
+            LogViewer.autoScroll = !LogViewer.autoScroll;
+            const btn = document.getElementById('autoScrollBtn');
+            if (btn) {
+                btn.textContent = `Auto-scroll: ${LogViewer.autoScroll ? 'ON' : 'OFF'}`;
+                btn.style.background = LogViewer.autoScroll ? '#4CAF50' : '#666';
+            }
+            
+            console.log(`🔄 Auto-scroll toggled: ${LogViewer.autoScroll ? 'ENABLED' : 'DISABLED'}`);
+            
+            // If enabling auto-scroll, immediately scroll to bottom
+            if (LogViewer.autoScroll) {
+                LogViewer.forceScrollToBottom();
+            }
+        }
+
+        function testScroll() {
+            console.log('🧪 Testing scroll functionality...');
+            const logContent = document.getElementById('logContent');
+            
+            if (!logContent) {
+                console.log('❌ logContent not found');
+                return;
+            }
+            
+            console.log(`📏 Scroll info: top=${logContent.scrollTop}, height=${logContent.scrollHeight}, client=${logContent.clientHeight}`);
+            
+            // Force scroll to bottom
+            logContent.scrollTop = logContent.scrollHeight;
+            
+            setTimeout(() => {
+                console.log(`📏 After scroll: top=${logContent.scrollTop}, height=${logContent.scrollHeight}, client=${logContent.clientHeight}`);
+            }, 100);
+        }
+
+        function filterByLevel(level) {
+            const levelFilter = document.getElementById('levelFilter');
+            if (levelFilter) {
+                levelFilter.value = level;
+                LogViewer.filterAndDisplayLogs();
+            }
+            
+            // Visual feedback
+            document.querySelectorAll('.quick-filter').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+        }
+
+        function clearAllFilters() {
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            if (levelFilter) levelFilter.value = '';
+            if (searchFilter) searchFilter.value = '';
+            
+            document.querySelectorAll('.quick-filter').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            
+            LogViewer.selectModule('all');
+        }
+
+        function refreshLogs() {
+            console.log('🔄 Refreshing logs...');
+            LogViewer.loadExistingLogs();
+        }
+
+        // Emergency loader as backup
+        setTimeout(function() {
+            if (LogViewer.allLogs.length === 0) {
+                console.log('🆘 Emergency: No logs loaded, trying direct fetch...');
+                LogViewer.loadExistingLogs();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

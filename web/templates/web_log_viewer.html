@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ryu Controller - Live Logs</title>
+    <style>
+    /* Minimal, fast CSS */
+    body { 
+        font-family: 'Segoe UI', Arial, sans-serif; 
+        background: #1a1a1a; 
+        color: white; 
+        margin: 0; 
+        padding: 0; 
+    }
+    
+    .header { 
+        background: #2d2d2d; 
+        padding: 1rem; 
+        display: flex; 
+        justify-content: space-between; 
+        align-items: center; 
+        border-bottom: 1px solid #444;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .header h1 {
+        margin: 0;
+        color: #4CAF50;
+        font-size: 1.5rem;
+    }
+    
+    .controls {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+    
+    .filter-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .filter-group label {
+        font-size: 0.8rem;
+        color: #ccc;
+    }
+    
+    .filter-group select,
+    .filter-group input {
+        padding: 0.5rem;
+        background: #333;
+        color: white;
+        border: 1px solid #555;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    
+    .quick-filters {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .quick-filter {
+        padding: 0.4rem 0.8rem;
+        background: #444;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.8rem;
+    }
+    
+    .quick-filter:hover { background: #555; }
+    .quick-filter.error { background: #f44336; }
+    .quick-filter.warning { background: #ff9800; }
+    
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .action-btn {
+        padding: 0.5rem 1rem;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+    
+    .action-btn:hover { background: #45a049; }
+    .clear-btn { background: #f44336; }
+    .clear-btn:hover { background: #d32f2f; }
+    
+    .status-indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ff4444;
+        margin-left: 1rem;
+    }
+    
+    .status-indicator.connected {
+        background: #4CAF50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+    }
+    
+    .main-container {
+        height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .log-header {
+        background: #333;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #444;
+    }
+    
+    .log-header h3 {
+        margin: 0;
+        color: #4CAF50;
+        font-size: 1rem;
+    }
+    
+    .stats {
+        display: flex;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #ccc;
+    }
+    
+    .log-content {
+        flex: 1;
+        overflow-y: auto;
+        background: #1a1a1a;
+        font-family: 'Consolas', 'Courier New', monospace;
+        font-size: 13px;
+        padding: 0;
+    }
+    
+    .log-entry {
+        display: grid;
+        grid-template-columns: 140px 120px 80px 1fr;
+        gap: 12px;
+        padding: 8px 12px;
+        border-bottom: 1px solid #333;
+        align-items: center;
+    }
+    
+    .log-entry:hover {
+        background: #2a2a2a;
+    }
+    
+    .log-timestamp {
+        color: #888;
+        font-size: 11px;
+    }
+    
+    .log-module {
+        color: #4CAF50;
+        font-weight: bold;
+        font-size: 12px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    
+    .log-level {
+        font-weight: bold;
+        text-align: center;
+        padding: 3px 6px;
+        border-radius: 3px;
+        font-size: 10px;
+    }
+    
+    .log-level.DEBUG { background: #607d8b; color: white; }
+    .log-level.INFO { background: #2196f3; color: white; }
+    .log-level.WARNING { background: #ff9800; color: white; }
+    .log-level.ERROR { background: #f44336; color: white; }
+    .log-level.CRITICAL { background: #9c27b0; color: white; }
+    
+    .log-message {
+        color: #e0e0e0;
+        font-size: 12px;
+        line-height: 1.3;
+        word-wrap: break-word;
+    }
+    
+    .loading {
+        text-align: center;
+        padding: 2rem;
+        color: #888;
+    }
+    
+    .no-logs {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+    }
+    
+    .error {
+        text-align: center;
+        padding: 2rem;
+        color: #f44336;
+        background: rgba(244, 67, 54, 0.1);
+        border: 1px solid rgba(244, 67, 54, 0.3);
+        border-radius: 4px;
+        margin: 1rem;
+    }
+    
+    .scroll-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        display: none;
+    }
+    
+    .scroll-btn:hover {
+        background: #45a049;
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🚀 Ryu Controller - Live Logs</h1>
+        
+        <div class="controls">
+            <div class="filter-group">
+                <label>Level:</label>
+                <select id="levelFilter">
+                    <option value="">All Levels</option>
+                    <option value="DEBUG">DEBUG</option>
+                    <option value="INFO">INFO</option>
+                    <option value="WARNING">WARNING</option>
+                    <option value="ERROR">ERROR</option>
+                    <option value="CRITICAL">CRITICAL</option>
+                </select>
+            </div>
+            
+            <div class="filter-group">
+                <label>Search:</label>
+                <input type="text" id="searchFilter" placeholder="Search messages...">
+            </div>
+            
+            <div class="filter-group">
+                <label>Quick Filters:</label>
+                <div class="quick-filters">
+                    <button onclick="filterByLevel('ERROR')" class="quick-filter error">Errors</button>
+                    <button onclick="filterByLevel('WARNING')" class="quick-filter warning">Warnings</button>
+                    <button onclick="clearFilters()" class="quick-filter">Clear</button>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <button onclick="clearLogs()" class="action-btn clear-btn">Clear</button>
+                <button onclick="toggleAutoScroll()" id="autoScrollBtn" class="action-btn">Auto-scroll: ON</button>
+                <button onclick="refreshLogs()" class="action-btn">Refresh</button>
+            </div>
+            
+            <div class="status-indicator" id="statusIndicator"></div>
+        </div>
+    </div>
+    
+    <div class="main-container">
+        <div class="log-header">
+            <h3 id="currentModule">All Modules</h3>
+            <div class="stats">
+                <span>Total: <span id="totalLogs">0</span></span>
+                <span>Filtered: <span id="visibleLogs">0</span></span>
+            </div>
+        </div>
+        <div class="log-content" id="logContent">
+            <div class="loading">Loading logs...</div>
+        </div>
+    </div>
+
+    <button id="scrollBtn" class="scroll-btn" onclick="scrollToBottom()">↓ Bottom</button>
+
+    <script>
+        // Lightweight, fast LogViewer
+        const LogViewer = {
+            allLogs: [],
+            filteredLogs: [],
+            autoScroll: true
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLogs();
+            setupFilters();
+            setupEventSource();
+        });
+
+        // Load existing logs - FAST version
+        function loadLogs() {
+            fetch('/logs')
+                .then(response => response.json())
+                .then(data => {
+                    LogViewer.allLogs = data.logs || [];
+                    displayLogs();
+                    updateStats();
+                })
+                .catch(error => {
+                    document.getElementById('logContent').innerHTML = 
+                        '<div class="error">Failed to load logs</div>';
+                });
+        }
+
+        // Fast display function
+        function displayLogs() {
+            const logContent = document.getElementById('logContent');
+            if (!logContent) return;
+            
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            const levelValue = levelFilter?.value || '';
+            const searchValue = (searchFilter?.value || '').toLowerCase();
+            
+            // Simple filtering
+            LogViewer.filteredLogs = LogViewer.allLogs.filter(log => {
+                const levelMatch = !levelValue || log.level === levelValue;
+                const searchMatch = !searchValue || 
+                    log.message.toLowerCase().includes(searchValue) ||
+                    log.module.toLowerCase().includes(searchValue);
+                return levelMatch && searchMatch;
+            });
+
+            if (LogViewer.filteredLogs.length === 0) {
+                logContent.innerHTML = '<div class="no-logs">No logs found</div>';
+                return;
+            }
+
+            // Fast HTML generation
+            const html = LogViewer.filteredLogs.map(log => 
+                `<div class="log-entry">
+                    <div class="log-timestamp">${log.timestamp}</div>
+                    <div class="log-module">${log.module}</div>
+                    <div class="log-level ${log.level}">${log.level}</div>
+                    <div class="log-message">${escapeHtml(log.message)}</div>
+                </div>`
+            ).join('');
+            
+            logContent.innerHTML = html;
+            
+            // Simple auto-scroll
+            if (LogViewer.autoScroll) {
+                logContent.scrollTop = logContent.scrollHeight;
+            }
+
+            updateStats();
+        }
+
+        // Setup filters
+        function setupFilters() {
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            if (levelFilter) {
+                levelFilter.addEventListener('change', displayLogs);
+            }
+            if (searchFilter) {
+                searchFilter.addEventListener('input', displayLogs);
+            }
+        }
+
+        // Simple EventSource
+        function setupEventSource() {
+            const statusIndicator = document.getElementById('statusIndicator');
+            const eventSource = new EventSource('/events');
+            
+            eventSource.onopen = () => {
+                if (statusIndicator) statusIndicator.classList.add('connected');
+            };
+            
+            eventSource.onmessage = (event) => {
+                try {
+                    const logEntry = JSON.parse(event.data);
+                    if (logEntry.type !== 'connected') {
+                        LogViewer.allLogs.push(logEntry);
+                        displayLogs();
+                    }
+                } catch (error) {
+                    // Ignore parse errors
+                }
+            };
+            
+            eventSource.onerror = () => {
+                if (statusIndicator) statusIndicator.classList.remove('connected');
+                setTimeout(setupEventSource, 5000);
+            };
+        }
+
+        // Utility functions
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function updateStats() {
+            const totalSpan = document.getElementById('totalLogs');
+            const visibleSpan = document.getElementById('visibleLogs');
+            
+            if (totalSpan) totalSpan.textContent = LogViewer.allLogs.length;
+            if (visibleSpan) visibleSpan.textContent = LogViewer.filteredLogs.length;
+        }
+
+        // Button functions
+        function clearLogs() {
+            LogViewer.allLogs = [];
+            LogViewer.filteredLogs = [];
+            displayLogs();
+        }
+
+        function toggleAutoScroll() {
+            LogViewer.autoScroll = !LogViewer.autoScroll;
+            const btn = document.getElementById('autoScrollBtn');
+            if (btn) {
+                btn.textContent = `Auto-scroll: ${LogViewer.autoScroll ? 'ON' : 'OFF'}`;
+                btn.style.background = LogViewer.autoScroll ? '#4CAF50' : '#666';
+            }
+            if (LogViewer.autoScroll) {
+                scrollToBottom();
+            }
+        }
+
+        function scrollToBottom() {
+            const logContent = document.getElementById('logContent');
+            if (logContent) {
+                logContent.scrollTop = logContent.scrollHeight;
+            }
+        }
+
+        function refreshLogs() {
+            loadLogs();
+        }
+
+        function filterByLevel(level) {
+            const levelFilter = document.getElementById('levelFilter');
+            if (levelFilter) {
+                levelFilter.value = level;
+                displayLogs();
+            }
+        }
+
+        function clearFilters() {
+            const levelFilter = document.getElementById('levelFilter');
+            const searchFilter = document.getElementById('searchFilter');
+            
+            if (levelFilter) levelFilter.value = '';
+            if (searchFilter) searchFilter.value = '';
+            displayLogs();
+        }
+
+        // Show scroll button when not at bottom
+        document.getElementById('logContent')?.addEventListener('scroll', function() {
+            const scrollBtn = document.getElementById('scrollBtn');
+            const isAtBottom = this.scrollHeight - this.clientHeight <= this.scrollTop + 10;
+            
+            if (scrollBtn) {
+                scrollBtn.style.display = isAtBottom ? 'none' : 'block';
+            }
+        });
+    </script>
+</body>
+</html>

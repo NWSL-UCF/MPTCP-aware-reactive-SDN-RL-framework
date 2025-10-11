@@ -1,0 +1,2 @@
+{"timestamp": 1760200309.278663, "receiver_token": 996998712, "active_subflows": [1, 2, 3, 4], "path_distribution": {"1-2-path1": 2, "1-2-path2": 2}, "current_rate_mbps": 7.002470026896147, "avg_rate_mbps": 4.417466847475257}
+{"timestamp": 1760200309.2790506, "receiver_token": 2776461058, "active_subflows": [5, 6, 7, 8], "path_distribution": {"3-4-path1": 2, "3-4-path2": 2}, "current_rate_mbps": 10.138241149523111, "avg_rate_mbps": 5.0691205747615555}

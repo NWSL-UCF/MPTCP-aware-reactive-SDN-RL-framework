@@ -1,0 +1,33 @@
+Epsilon-greedy: With probability ε, choose a random path; otherwise, choose the path with highest probability.
+
+def choose_path_epsilon_greedy(self, state, epsilon=0.1):
+    if np.random.random() < epsilon:
+        # Exploration: choose random path
+        path_id = np.random.randint(0, len(state) // self.features_per_path)
+    else:
+        # Exploitation: choose highest probability path
+        path_id = np.argmax(self.policy(torch.FloatTensor(state)).detach().numpy())
+    return path_id
+
+
+2- Entropy regularization: Add an entropy term to the loss function to encourage exploration.
+
+
+def calculate_loss(self, probs, values, actions, returns, old_log_probs):
+    # Standard PPO loss
+    # ...
+    
+    # Add entropy term to encourage exploration
+    entropy = -torch.sum(probs * torch.log(probs + 1e-10), dim=1).mean()
+    loss = actor_loss + 0.5 * critic_loss - 0.01 * entropy  # Entropy coefficient
+    
+    return loss
+
+3- Temperature sampling: Adjust the "temperature" of the softmax to control randomness.
+
+def choose_path_temperature(self, state, temperature=1.0):
+    probs = self.policy(torch.FloatTensor(state))
+    # Higher temperature = more random, lower = more deterministic
+    adjusted_probs = torch.pow(probs, 1.0/temperature)
+    adjusted_probs = adjusted_probs / torch.sum(adjusted_probs)
+    return torch.multinomial(adjusted_probs, 1).item()

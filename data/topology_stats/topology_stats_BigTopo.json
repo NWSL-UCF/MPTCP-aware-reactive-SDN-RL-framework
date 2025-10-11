@@ -1,0 +1,98 @@
+{
+  "links": {
+    "s1-s7":  { "node1": "s1",  "port1": "s1-eth1",  "node2": "s7",  "port2": "s7-eth1",  "bandwidth": 10, "delay": "5ms" },
+    "s1-s8":  { "node1": "s1",  "port1": "s1-eth2",  "node2": "s8",  "port2": "s8-eth1",  "bandwidth": 10, "delay": "5ms" },
+    "s2-s7":  { "node1": "s2",  "port1": "s2-eth1",  "node2": "s7",  "port2": "s7-eth2",  "bandwidth": 10, "delay": "5ms" },
+    "s2-s8":  { "node1": "s2",  "port1": "s2-eth2",  "node2": "s8",  "port2": "s8-eth2",  "bandwidth": 10, "delay": "5ms" },
+
+    "s3-s9":  { "node1": "s3",  "port1": "s3-eth1",  "node2": "s9",  "port2": "s9-eth1",  "bandwidth": 10, "delay": "5ms" },
+    "s3-s10": { "node1": "s3",  "port1": "s3-eth2",  "node2": "s10", "port2": "s10-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s4-s9":  { "node1": "s4",  "port1": "s4-eth1",  "node2": "s9",  "port2": "s9-eth2",  "bandwidth": 10, "delay": "5ms" },
+    "s4-s10": { "node1": "s4",  "port1": "s4-eth2",  "node2": "s10", "port2": "s10-eth2", "bandwidth": 10, "delay": "5ms" },
+
+    "s5-s11": { "node1": "s5",  "port1": "s5-eth1",  "node2": "s11", "port2": "s11-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s5-s12": { "node1": "s5",  "port1": "s5-eth2",  "node2": "s12", "port2": "s12-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s6-s11": { "node1": "s6",  "port1": "s6-eth1",  "node2": "s11", "port2": "s11-eth2", "bandwidth": 10, "delay": "5ms" },
+    "s6-s12": { "node1": "s6",  "port1": "s6-eth2",  "node2": "s12", "port2": "s12-eth2", "bandwidth": 10, "delay": "5ms" },
+
+    "s7-s13": { "node1": "s7",  "port1": "s7-eth3",  "node2": "s13", "port2": "s13-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s8-s14": { "node1": "s8",  "port1": "s8-eth3",  "node2": "s14", "port2": "s14-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s9-s15": { "node1": "s9",  "port1": "s9-eth3",  "node2": "s15", "port2": "s15-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s10-s16":{ "node1": "s10", "port1": "s10-eth3", "node2": "s16", "port2": "s16-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s11-s17":{ "node1": "s11", "port1": "s11-eth3", "node2": "s17", "port2": "s17-eth1", "bandwidth": 10, "delay": "5ms" },
+    "s12-s18":{ "node1": "s12", "port1": "s12-eth3", "node2": "s18", "port2": "s18-eth1", "bandwidth": 10, "delay": "5ms" },
+
+    "s13-s15":{ "node1": "s13", "port1": "s13-eth2", "node2": "s15", "port2": "s15-eth2", "bandwidth": 10, "delay": "5ms" },
+    "s14-s16":{ "node1": "s14", "port1": "s14-eth2", "node2": "s16", "port2": "s16-eth2", "bandwidth": 10, "delay": "5ms" },
+    "s15-s17":{ "node1": "s15", "port1": "s15-eth3", "node2": "s17", "port2": "s17-eth2", "bandwidth": 10, "delay": "5ms" },
+    "s16-s18":{ "node1": "s16", "port1": "s16-eth3", "node2": "s18", "port2": "s18-eth2", "bandwidth": 10, "delay": "5ms" }
+  },
+
+  "ports": {
+    "s1-port1":  { "connected_to": "s7-port1",  "dst-dpid": "s7",  "bandwidth": 10, "delay": "5ms" },
+    "s7-port1":  { "connected_to": "s1-port1",  "dst-dpid": "s1",  "bandwidth": 10, "delay": "5ms" },
+
+    "s1-port2":  { "connected_to": "s8-port1",  "dst-dpid": "s8",  "bandwidth": 10, "delay": "5ms" },
+    "s8-port1":  { "connected_to": "s1-port2",  "dst-dpid": "s1",  "bandwidth": 10, "delay": "5ms" },
+
+    "s2-port1":  { "connected_to": "s7-port2",  "dst-dpid": "s7",  "bandwidth": 10, "delay": "5ms" },
+    "s7-port2":  { "connected_to": "s2-port1",  "dst-dpid": "s2",  "bandwidth": 10, "delay": "5ms" },
+
+    "s2-port2":  { "connected_to": "s8-port2",  "dst-dpid": "s8",  "bandwidth": 10, "delay": "5ms" },
+    "s8-port2":  { "connected_to": "s2-port2",  "dst-dpid": "s2",  "bandwidth": 10, "delay": "5ms" },
+
+    "s3-port1":  { "connected_to": "s9-port1",  "dst-dpid": "s9",  "bandwidth": 10, "delay": "5ms" },
+    "s9-port1":  { "connected_to": "s3-port1",  "dst-dpid": "s3",  "bandwidth": 10, "delay": "5ms" },
+
+    "s3-port2":  { "connected_to": "s10-port1", "dst-dpid": "s10", "bandwidth": 10, "delay": "5ms" },
+    "s10-port1": { "connected_to": "s3-port2",  "dst-dpid": "s3",  "bandwidth": 10, "delay": "5ms" },
+
+    "s4-port1":  { "connected_to": "s9-port2",  "dst-dpid": "s9",  "bandwidth": 10, "delay": "5ms" },
+    "s9-port2":  { "connected_to": "s4-port1",  "dst-dpid": "s4",  "bandwidth": 10, "delay": "5ms" },
+
+    "s4-port2":  { "connected_to": "s10-port2", "dst-dpid": "s10", "bandwidth": 10, "delay": "5ms" },
+    "s10-port2": { "connected_to": "s4-port2",  "dst-dpid": "s4",  "bandwidth": 10, "delay": "5ms" },
+
+    "s5-port1":  { "connected_to": "s11-port1", "dst-dpid": "s11", "bandwidth": 10, "delay": "5ms" },
+    "s11-port1": { "connected_to": "s5-port1",  "dst-dpid": "s5",  "bandwidth": 10, "delay": "5ms" },
+
+    "s5-port2":  { "connected_to": "s12-port1", "dst-dpid": "s12", "bandwidth": 10, "delay": "5ms" },
+    "s12-port1": { "connected_to": "s5-port2",  "dst-dpid": "s5",  "bandwidth": 10, "delay": "5ms" },
+
+    "s6-port1":  { "connected_to": "s11-port2", "dst-dpid": "s11", "bandwidth": 10, "delay": "5ms" },
+    "s11-port2": { "connected_to": "s6-port1",  "dst-dpid": "s6",  "bandwidth": 10, "delay": "5ms" },
+
+    "s6-port2":  { "connected_to": "s12-port2", "dst-dpid": "s12", "bandwidth": 10, "delay": "5ms" },
+    "s12-port2": { "connected_to": "s6-port2",  "dst-dpid": "s6",  "bandwidth": 10, "delay": "5ms" },
+
+    "s7-port3":  { "connected_to": "s13-port1", "dst-dpid": "s13", "bandwidth": 10, "delay": "5ms" },
+    "s13-port1": { "connected_to": "s7-port3",  "dst-dpid": "s7",  "bandwidth": 10, "delay": "5ms" },
+
+    "s8-port3":  { "connected_to": "s14-port1", "dst-dpid": "s14", "bandwidth": 10, "delay": "5ms" },
+    "s14-port1": { "connected_to": "s8-port3",  "dst-dpid": "s8",  "bandwidth": 10, "delay": "5ms" },
+
+    "s9-port3":  { "connected_to": "s15-port1", "dst-dpid": "s15", "bandwidth": 10, "delay": "5ms" },
+    "s15-port1": { "connected_to": "s9-port3",  "dst-dpid": "s9",  "bandwidth": 10, "delay": "5ms" },
+
+    "s10-port3": { "connected_to": "s16-port1", "dst-dpid": "s16", "bandwidth": 10, "delay": "5ms" },
+    "s16-port1": { "connected_to": "s10-port3", "dst-dpid": "s10", "bandwidth": 10, "delay": "5ms" },
+
+    "s11-port3": { "connected_to": "s17-port1", "dst-dpid": "s17", "bandwidth": 10, "delay": "5ms" },
+    "s17-port1": { "connected_to": "s11-port3", "dst-dpid": "s11", "bandwidth": 10, "delay": "5ms" },
+
+    "s12-port3": { "connected_to": "s18-port1", "dst-dpid": "s18", "bandwidth": 10, "delay": "5ms" },
+    "s18-port1": { "connected_to": "s12-port3", "dst-dpid": "s12", "bandwidth": 10, "delay": "5ms" },
+
+    "s13-port2": { "connected_to": "s15-port2", "dst-dpid": "s15", "bandwidth": 10, "delay": "5ms" },
+    "s15-port2": { "connected_to": "s13-port2", "dst-dpid": "s13", "bandwidth": 10, "delay": "5ms" },
+
+    "s14-port2": { "connected_to": "s16-port2", "dst-dpid": "s16", "bandwidth": 10, "delay": "5ms" },
+    "s16-port2": { "connected_to": "s14-port2", "dst-dpid": "s14", "bandwidth": 10, "delay": "5ms" },
+
+    "s15-port3": { "connected_to": "s17-port2", "dst-dpid": "s17", "bandwidth": 10, "delay": "5ms" },
+    "s17-port2": { "connected_to": "s15-port3", "dst-dpid": "s15", "bandwidth": 10, "delay": "5ms" },
+
+    "s16-port3": { "connected_to": "s18-port2", "dst-dpid": "s18", "bandwidth": 10, "delay": "5ms" },
+    "s18-port2": { "connected_to": "s16-port3", "dst-dpid": "s16", "bandwidth": 10, "delay": "5ms" }
+  }
+}

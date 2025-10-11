@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Head Graph - SDN Dashboard</title>
+    <link rel="stylesheet" href="/web/static/css/dashboard.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Multi-Head Graph Visualization</h1>
+        <p>Layered network representation with different heads</p>
+    </div>
+    
+    <div class="nav-menu">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/topology-view">Topology</a>
+        <a href="/flow-monitoring">Flow Monitoring</a>
+        <a href="/agent-control">Agent Control</a>
+        <a href="/multihead-graph">Multi-Head Graph</a>
+        <button class="refresh-btn" onclick="loadGraph()">Refresh Graph</button>
+    </div>
+    
+    <!-- Head Legend -->
+    <div class="legend">
+        <span class="legend-item">
+            <span class="legend-color" style="background-color: #ff6b6b;"></span>
+            Head 1: Switches (MLU)
+        </span>
+        <span class="legend-item">
+            <span class="legend-color" style="background-color: #4ecdc4;"></span>
+            Head 2: Ports (Utilization & Flow Count)
+        </span>
+        <span class="legend-item">
+            <span class="legend-color" style="background-color: #45b7d1;"></span>
+            Head 3: Flows (Rate & Endpoints)
+        </span>
+        <span class="legend-item">
+            <span class="legend-color" style="background-color: #00A146;"></span>
+            Head 4: New Ports (Utilization)
+        </span>
+    </div>
+    
+    <!-- Controls -->
+    <div class="controls">
+        <div class="head-controls">
+            <label><input type="checkbox" id="head1" checked> Head 1 (Switches)</label>
+            <label><input type="checkbox" id="head2" checked> Head 2 (Ports)</label>
+            <label><input type="checkbox" id="head3" checked> Head 3 (Flows)</label>
+            <label><input type="checkbox" id="head4" checked> Head 4 (New Ports)</label>
+        </div>
+        <div class="view-controls">
+            <button onclick="resetView()">Reset View</button>
+            <button onclick="centerGraph()">Center Graph</button>
+        </div>
+    </div>
+    
+    <!-- Messages -->
+    <div id="loadingMessage" class="message loading" style="display: none;">
+        Loading graph data...
+    </div>
+    <div id="errorMessage" class="message error" style="display: none;"></div>
+    <div id="successMessage" class="message success" style="display: none;"></div>
+    
+    <!-- Graph Container -->
+    <div id="multiheadGraph" class="graph-container" style="width: 100%; height: 600px; border: 1px solid #ccc;"></div>
+    
+    <!-- Node Details Panel -->
+    <div id="nodeDetails" class="node-details" style="display: none;">
+        <div class="details-header">
+            <h3 id="nodeTitle">Node Details</h3>
+            <button onclick="closeNodeDetails()">×</button>
+        </div>
+        <div id="nodeInfo" class="details-content"></div>
+    </div>
+    
+    <!-- Statistics Panel -->
+    <div class="statistics-panel">
+        <h3>Graph Statistics</h3>
+        <div id="graphStats"></div>
+    </div>
+
+    <script>
+        let graphRenderer = null;
+        let visibleHeads = new Set([1, 2, 3, 4]); // Include Head 4 by default
+
+        // Message display functions
+        function showMessage(id, text) {
+            hideAllMessages();
+            const element = document.getElementById(id);
+            if (element) {
+                element.textContent = text;
+                element.style.display = 'block';
+            }
+        }
+        
+        function hideAllMessages() {
+            ['loadingMessage', 'errorMessage', 'successMessage'].forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            });
+        }
+
+        // Debug function for Head 3-4 connections
+        function debugHead4Data(data) {
+            console.log('=== HEAD 3-4 CONNECTION DEBUG ===');
+            
+            const head3Nodes = data.nodes.filter(n => n.head === 3);
+            const head4Nodes = data.nodes.filter(n => n.head === 4);
+            
+            // Handle both edge formats: {from/to} and {source/target}
+            const head3ToHead4Edges = data.edges.filter(e => {
+                const fromId = e.from || e.source;
+                const toId = e.to || e.target;
+                const fromNode = data.nodes.find(n => n.id === fromId);
+                const toNode = data.nodes.find(n => n.id === toId);
+                return fromNode && toNode && fromNode.head === 3 && toNode.head === 4;
+            });
+            
+            console.log(`Head 3 nodes: ${head3Nodes.length}`);
+            console.log('Head 3 node IDs:', head3Nodes.map(n => n.id));
+            
+            console.log(`Head 4 nodes: ${head4Nodes.length}`);
+            console.log('Head 4 node IDs:', head4Nodes.map(n => n.id));
+            
+            console.log(`Head 3->4 edges: ${head3ToHead4Edges.length}`);
+            head3ToHead4Edges.forEach(edge => {
+                const fromId = edge.from || edge.source;
+                const toId = edge.to || edge.target;
+                console.log(`  ${fromId} -> ${toId} (type: ${edge.type}, weight: ${edge.weight})`);
+            });
+            
+            // Check for flow_to_new_port edges specifically
+            const flowToNewPortEdges = data.edges.filter(e => e.type === 'flow_to_new_port');
+            console.log(`flow_to_new_port edges: ${flowToNewPortEdges.length}`);
+            
+            // Check all edges structure
+            console.log('Sample edge structure:', data.edges[0]);
+            
+            // Check if visible heads include both 3 and 4
+            console.log('Visible heads:', Array.from(visibleHeads));
+            console.log('Head 3 visible:', visibleHeads.has(3));
+            console.log('Head 4 visible:', visibleHeads.has(4));
+            
+            console.log('All nodes by head:', {
+                1: data.nodes.filter(n => n.head === 1).length,
+                2: data.nodes.filter(n => n.head === 2).length,
+                3: data.nodes.filter(n => n.head === 3).length,
+                4: data.nodes.filter(n => n.head === 4).length
+            });
+        }
+
+        // Load graph data from API
+        async function loadGraphData() {
+            const response = await fetch('/api/v1/multihead/graph-data');
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
+            return await response.json();
+        }
+
+        function renderGraph(data) {
+            hideAllMessages();
+            
+            // Add debugging
+            debugHead4Data(data);
+            
+            if (!data || !data.nodes || data.nodes.length === 0) {
+                showMessage('errorMessage', 'No graph data to display');
+                return;
+            }
+            
+            // Filter nodes based on visible heads
+            const filteredNodes = data.nodes.filter(node => visibleHeads.has(node.head));
+            
+            // Store original positions for reset functionality
+            filteredNodes.forEach(node => {
+                node.originalX = node.x;
+                node.originalY = node.y;
+            });
+            
+            // FIXED: Better edge filtering logic for inter-head connections
+            const filteredEdges = data.edges.filter(edge => {
+                // Handle both edge formats
+                const fromId = edge.from || edge.source;
+                const toId = edge.to || edge.target;
+                
+                // Find the actual nodes for this edge
+                const fromNode = data.nodes.find(n => n.id === fromId);
+                const toNode = data.nodes.find(n => n.id === toId);
+                
+                if (!fromNode || !toNode) {
+                    console.log(`Edge ${fromId} -> ${toId}: Missing node(s)`);
+                    return false;
+                }
+                
+                // Check if both nodes are in visible heads
+                const fromVisible = visibleHeads.has(fromNode.head);
+                const toVisible = visibleHeads.has(toNode.head);
+                
+                // Include edge if BOTH nodes are visible
+                const shouldInclude = fromVisible && toVisible;
+                
+                // Debug inter-head connections
+                if (edge.type === 'flow_to_new_port' || (fromNode.head === 3 && toNode.head === 4)) {
+                    console.log(`Edge ${fromId} (head ${fromNode.head}) -> ${toId} (head ${toNode.head}): fromVisible=${fromVisible}, toVisible=${toVisible}, included=${shouldInclude}`);
+                }
+                
+                return shouldInclude;
+            });
+            
+            // Normalize edge format for consistency
+            const normalizedEdges = filteredEdges.map(edge => ({
+                from: edge.from || edge.source,
+                to: edge.to || edge.target,
+                type: edge.type || (edge.data && edge.data.edge_type) || 'unknown',
+                color: edge.color || '#999',
+                width: edge.width || 1,
+                weight: edge.weight || (edge.data && edge.data.weight) || 1
+            }));
+            
+            console.log(`Filtered nodes by head:`, visibleHeads);
+            console.log(`Rendered: ${filteredNodes.length} nodes, ${normalizedEdges.length} edges`);
+            console.log('Node distribution by head:', {
+                1: filteredNodes.filter(n => n.head === 1).length,
+                2: filteredNodes.filter(n => n.head === 2).length,
+                3: filteredNodes.filter(n => n.head === 3).length,
+                4: filteredNodes.filter(n => n.head === 4).length
+            });
+            
+            // Debug Head 3 to Head 4 edges specifically
+            const head3ToHead4Edges = normalizedEdges.filter(edge => {
+                const fromNode = data.nodes.find(n => n.id === edge.from);
+                const toNode = data.nodes.find(n => n.id === edge.to);
+                return fromNode && toNode && fromNode.head === 3 && toNode.head === 4;
+            });
+            console.log(`Head 3 to Head 4 normalized edges: ${head3ToHead4Edges.length}`, head3ToHead4Edges);
+            
+            // Initialize renderer if not exists
+            const container = document.getElementById('multiheadGraph');
+            if (!graphRenderer) {
+                graphRenderer = new GraphRenderer(container);
+            }
+            
+            // Update data with layered positions
+            graphRenderer.updateData(filteredNodes, normalizedEdges);
+            
+            // Show graph and update statistics
+            document.getElementById('multiheadGraph').style.display = 'block';
+            updateStatistics(data.statistics);
+            showMessage('successMessage', `Graph loaded: ${filteredNodes.length} nodes, ${normalizedEdges.length} edges`);
+        }
+
+        function updateStatistics(stats) {
+            const statsElement = document.getElementById('graphStats');
+            if (!statsElement || !stats) return;
+            
+            let html = '<div class="stats-grid">';
+            
+            if (stats.node_counts) {
+                html += '<div class="stat-item"><strong>Nodes by Head:</strong>';
+                for (const [head, count] of Object.entries(stats.node_counts)) {
+                    html += `<br>Head ${head}: ${count}`;
+                }
+                html += '</div>';
+            }
+            
+            if (stats.edge_counts) {
+                html += '<div class="stat-item"><strong>Edges by Type:</strong>';
+                for (const [type, count] of Object.entries(stats.edge_counts)) {
+                    html += `<br>${type}: ${count}`;
+                }
+                html += '</div>';
+            }
+            
+            if (stats.layer_layout) {
+                html += '<div class="stat-item"><strong>Layer Info:</strong>';
+                for (const [layer, info] of Object.entries(stats.layer_layout.layer_stats)) {
+                    html += `<br>${layer}: ${info.count} nodes`;
+                }
+                html += '</div>';
+            }
+            
+            html += '</div>';
+            statsElement.innerHTML = html;
+        }
+
+        // Main load function
+        async function loadGraph() {
+            try {
+                showMessage('loadingMessage', 'Loading graph data...');
+                const data = await loadGraphData();
+                renderGraph(data);
+            } catch (error) {
+                console.error('Error loading graph:', error);
+                showMessage('errorMessage', `Failed to load graph: ${error.message}`);
+            }
+        }
+
+        // Head visibility controls
+        function updateHeadVisibility() {
+            visibleHeads.clear();
+            
+            if (document.getElementById('head1').checked) visibleHeads.add(1);
+            if (document.getElementById('head2').checked) visibleHeads.add(2);
+            if (document.getElementById('head3').checked) visibleHeads.add(3);
+            if (document.getElementById('head4').checked) visibleHeads.add(4);
+            
+            // Reload graph with new visibility settings
+            loadGraph();
+        }
+
+        // View control functions
+        function resetView() {
+            if (graphRenderer) {
+                graphRenderer.resetView();
+            }
+        }
+
+        function centerGraph() {
+            if (graphRenderer) {
+                graphRenderer.camera = { x: 0, y: 0, zoom: 1 };
+            }
+        }
+
+        function closeNodeDetails() {
+            const detailsPanel = document.getElementById('nodeDetails');
+            if (detailsPanel) {
+                detailsPanel.style.display = 'none';
+            }
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners for head checkboxes
+            ['head1', 'head2', 'head3', 'head4'].forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.addEventListener('change', updateHeadVisibility);
+                }
+            });
+            
+            // Initial load
+            loadGraph();
+        });
+    </script>
+    
+    <script src="/web/static/js/multihead-graph.js"></script>
+</body>
+</html>

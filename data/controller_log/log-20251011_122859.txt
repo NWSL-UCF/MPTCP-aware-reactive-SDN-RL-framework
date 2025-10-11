@@ -1,0 +1,84 @@
+loading app ryu.app.ofctl_rest
+loading app topology_manager.py
+loading app network_monitor.py
+loading app flow_rate_monitor.py
+loading app forwarding.py
+loading app arp_handler.py
+loading app network_delay.py
+loading app agent2_interface.py
+loading app rest_api_v2.py
+loading app ryu.controller.ofp_handler
+instantiating app None of DPSet
+creating context dpset
+creating context wsgi
+instantiating app None of Switches
+creating context switches
+instantiating app ryu.app.ofctl_rest of RestStatsApi
+instantiating app topology_manager.py of TopologyManagerV2
+Multi-Head Graph Manager initialized
+Graph Statistics Monitor initialized
+Loaded access_table_edge from data/access_table/access_table_edge_BigTopo.json
+Enhanced Topology Manager initialized. NAME: TopologyManagerV2
+instantiating app network_monitor.py of NetworkMonitor
+Traceback (most recent call last):
+  File "/usr/local/bin/ryu-manager", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/ryu/cmd/manager.py", line 101, in main
+    services.extend(app_mgr.instantiate_apps(**contexts))
+  File "/usr/local/lib/python3.8/dist-packages/ryu/base/app_manager.py", line 509, in instantiate_apps
+    self._instantiate(app_name, cls, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/ryu/base/app_manager.py", line 495, in _instantiate
+    app = cls(*args, **kwargs)
+  File "/home/ryucontroller/ryucontroller/Ryu_MPTCP-aware_/network_monitor.py", line 66, in __init__
+    self._init_topology_capacities()
+  File "/home/ryucontroller/ryucontroller/Ryu_MPTCP-aware_/network_monitor.py", line 309, in _init_topology_capacities
+    with open(topology_stats_file, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'data/topology_stats/topology_stats_BigTopo.json'
+Error in sys.excepthook:
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/apport_python_hook.py", line 72, in apport_excepthook
+    from apport.fileutils import likely_packaged, get_recent_crashes
+  File "/usr/lib/python3/dist-packages/apport/__init__.py", line 5, in <module>
+    from apport.report import Report
+  File "/usr/lib/python3/dist-packages/apport/report.py", line 32, in <module>
+    import apport.fileutils
+  File "/usr/lib/python3/dist-packages/apport/fileutils.py", line 12, in <module>
+    import os, glob, subprocess, os.path, time, pwd, sys, requests_unixsocket
+  File "/usr/lib/python3/dist-packages/requests_unixsocket/__init__.py", line 1, in <module>
+    import requests
+  File "/home/ryucontroller/.local/lib/python3.8/site-packages/requests/__init__.py", line 164, in <module>
+    from .api import delete, get, head, options, patch, post, put, request
+  File "/home/ryucontroller/.local/lib/python3.8/site-packages/requests/api.py", line 11, in <module>
+    from . import sessions
+  File "/home/ryucontroller/.local/lib/python3.8/site-packages/requests/sessions.py", line 15, in <module>
+    from .adapters import HTTPAdapter
+  File "/home/ryucontroller/.local/lib/python3.8/site-packages/requests/adapters.py", line 80, in <module>
+    _preloaded_ssl_context = create_urllib3_context()
+  File "/home/ryucontroller/.local/lib/python3.8/site-packages/urllib3/util/ssl_.py", line 297, in create_urllib3_context
+    context.minimum_version = TLSVersion.TLSv1_2
+  File "/usr/lib/python3.8/ssl.py", line 586, in minimum_version
+    super(SSLContext, SSLContext).minimum_version.__set__(self, value)
+  File "/usr/lib/python3.8/ssl.py", line 586, in minimum_version
+    super(SSLContext, SSLContext).minimum_version.__set__(self, value)
+  File "/usr/lib/python3.8/ssl.py", line 586, in minimum_version
+    super(SSLContext, SSLContext).minimum_version.__set__(self, value)
+  [Previous line repeated 464 more times]
+  File "/usr/lib/python3.8/ssl.py", line 584, in minimum_version
+    if value == TLSVersion.SSLv3:
+RecursionError: maximum recursion depth exceeded while calling a Python object
+
+Original exception was:
+Traceback (most recent call last):
+  File "/usr/local/bin/ryu-manager", line 8, in <module>
+    sys.exit(main())
+  File "/usr/local/lib/python3.8/dist-packages/ryu/cmd/manager.py", line 101, in main
+    services.extend(app_mgr.instantiate_apps(**contexts))
+  File "/usr/local/lib/python3.8/dist-packages/ryu/base/app_manager.py", line 509, in instantiate_apps
+    self._instantiate(app_name, cls, *args, **kwargs)
+  File "/usr/local/lib/python3.8/dist-packages/ryu/base/app_manager.py", line 495, in _instantiate
+    app = cls(*args, **kwargs)
+  File "/home/ryucontroller/ryucontroller/Ryu_MPTCP-aware_/network_monitor.py", line 66, in __init__
+    self._init_topology_capacities()
+  File "/home/ryucontroller/ryucontroller/Ryu_MPTCP-aware_/network_monitor.py", line 309, in _init_topology_capacities
+    with open(topology_stats_file, 'r') as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'data/topology_stats/topology_stats_BigTopo.json'

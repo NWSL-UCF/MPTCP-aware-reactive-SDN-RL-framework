@@ -1,0 +1,1964 @@
+loading app ryu.app.ofctl_rest
+loading app topology_manager.py
+loading app network_monitor.py
+loading app flow_rate_monitor.py
+loading app forwarding.py
+loading app arp_handler.py
+loading app network_delay.py
+loading app agent2_interface.py
+loading app rest_api_v2.py
+loading app ryu.controller.ofp_handler
+instantiating app None of DPSet
+creating context dpset
+creating context wsgi
+instantiating app None of Switches
+creating context switches
+instantiating app ryu.app.ofctl_rest of RestStatsApi
+instantiating app topology_manager.py of TopologyManagerV2
+Multi-Head Graph Manager initialized
+Graph Statistics Monitor initialized
+Loaded access_table_edge from data/access_table/access_table_edge_BigTopo.json
+Enhanced Topology Manager initialized. NAME: TopologyManagerV2
+instantiating app network_monitor.py of NetworkMonitor
+instantiating app flow_rate_monitor.py of FlowRateModule
+FlowRateModule initialized.
+File timestamp: _2025-10-11_12:29:49
+instantiating app forwarding.py of Forwarding
+Scheduler: Updating topology
+Updating network topology
+[Flow Rate Monitor] INFO: Successfully retrieved reference to TopologyManagerV2.
+[Flow Rate Monitor] INFO: Successfully retrieved reference to MultiHeadGraphManager through TopologyManagerV2.
+[Flow Rate Monitor] INFO: TopologyManagerV2 reference obtained, Forwarding still missing
+Agent device: cpu
+AGENT1_NEW_MODEL is True. Skipping loading of pre-trained model and starting with a new one.
+Path selection will be recorded in: data/path_selection/path_selection_10-11_12-29.json
+instantiating app arp_handler.py of ArpHandler
+instantiating app network_delay.py of NetworkDelayDetector
+instantiating app agent2_interface.py of Agent2Interface
+Hierarchical GNN-PPO Agent initialized on cuda
+Hierarchical GNN-PPO Agent initialized on cuda
+Metrics will be saved to: RL2/data/training_metrics/run_10-11-2025_12:29:49
+Agent2 device: cuda
+[agent2-interface-logging]: Agent2 Interface initialized successfully
+instantiating app rest_api_v2.py of NetworkMonitoringAPI
+Network Monitoring API initialized
+instantiating app ryu.controller.ofp_handler of OFPHandler
+(7870) wsgi starting up on http://0.0.0.0:8080
+No switches found in topology
+Flow rate monitor reference set in Multi-Head Graph Manager
+Network monitor module reference set in Multi-Head Graph Manager
+Flow rate monitor reference set in multi-head manager
+Stats monitor not found
+[Flow Rate Monitor] INFO: Connected to Forwarding
+[Flow Rate Monitor] INFO: All module references successfully obtained
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+Connected to TopologyManagerV2
+[agent2-interface-logging]: Connected to MultiHeadManager via TopologyManager
+Connected to Forwarding
+Connected to NetworkMonitor
+Connected to FlowRateModule
+[agent2-interface-logging]: Successfully connected to all critical modules
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+No active switches found in topology manager
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+No active switches found in topology manager
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+No active switches found in topology manager
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+No active switches found in topology manager
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+Installed default flows on switch 1
+Switch connected: 1
+Installed default flows on switch 6
+Switch connected: 6
+Installed default flows on switch 14
+Switch connected: 14
+Registering datapath: 0000000000000001
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Registering datapath: 0000000000000006
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 2 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Successfully connected to topology manager: TopologyManagerV2
+Successfully connected to multi-head graph manager
+Graph statistics monitoring started
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 2 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Installed default flows on switch 3
+Switch connected: 3
+Registering datapath: 000000000000000e
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 3 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Installed default flows on switch 10
+Switch connected: 10
+Installed default flows on switch 13
+Switch connected: 13
+Installed default flows on switch 8
+Switch connected: 8
+Installed default flows on switch 15
+Switch connected: 15
+Installed default flows on switch 7
+Switch connected: 7
+Installed default flows on switch 4
+Switch connected: 4
+Installed default flows on switch 12
+Switch connected: 12
+Installed default flows on switch 5
+Switch connected: 5
+Installed default flows on switch 17
+Switch connected: 17
+Installed default flows on switch 18
+Switch connected: 18
+Installed default flows on switch 2
+Switch connected: 2
+Installed default flows on switch 16
+Switch connected: 16
+Installed default flows on switch 11
+Switch connected: 11
+Installed default flows on switch 9
+Switch connected: 9
+Registering datapath: 0000000000000003
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 4 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 000000000000000a
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Registering datapath: 000000000000000d
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 5 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 6 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000008
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 7 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 000000000000000f
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 8 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000007
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 9 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000004
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Registering datapath: 000000000000000c
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 10 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Registering datapath: 0000000000000005
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 12 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 12 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000011
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Registering datapath: 0000000000000012
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 13 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5, 17]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 14 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5, 17, 18]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000002
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Registering datapath: 0000000000000010
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Registering datapath: 000000000000000b
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology updated: 16 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5, 17, 18, 2, 16]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 17 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5, 17, 18, 2, 16, 11]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 17 switches, 0 links
+Computing paths for switches s1-s6 only
+Some requested switches are missing from the topology: {'4', '1', '5', '6', '2', '3'}
+[topology_manager] INFO: nodes in topology: [1, 6, 14, 3, 10, 13, 8, 15, 7, 4, 12, 5, 17, 18, 2, 16, 11]
+[topology_manager] INFO: node types: <class 'networkx.classes.reportviews.NodeView'>
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Registering datapath: 0000000000000009
+Module references updated:
+  TopologyManager: True
+  NetworkMonitor: True
+  FlowRateModule: True
+  DelayDetector: True
+  Forwarding: True
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 0 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 4
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 3
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 5 and 6
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 0 path sets (0 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 6 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 4
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 3
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 5 and 6
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 0 path sets (0 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 6 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 4
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 3
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 5 and 6
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 0 path sets (0 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 11 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 4
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 5 and 6
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 1 path sets (3 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 15 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 18 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 19 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 20 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 20 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 20 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 20 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 22 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 22 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 1
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 3 path sets (9 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 31 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+No path found between 6 and 5
+Computed paths for 6×5 ordered switch pairs → 5 path sets (15 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 33 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 1 and 5
+No path found between 1 and 6
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 2 and 5
+No path found between 2 and 6
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 1
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 1
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+Computed paths for 6×5 ordered switch pairs → 6 path sets (18 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 35 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 1 and 2
+No path found between 1 and 3
+No path found between 1 and 4
+No path found between 2 and 3
+No path found between 2 and 4
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+No path found between 5 and 2
+No path found between 5 and 3
+No path found between 5 and 4
+No path found between 6 and 2
+No path found between 6 and 3
+No path found between 6 and 4
+Computed paths for 6×5 ordered switch pairs → 17 path sets (101 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 39 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+No path found between 3 and 1
+No path found between 3 and 2
+No path found between 3 and 5
+No path found between 3 and 6
+No path found between 4 and 1
+No path found between 4 and 2
+No path found between 4 and 5
+No path found between 4 and 6
+Computed paths for 6×5 ordered switch pairs → 42 path sets (268 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+Topology addition event triggered
+Updating network topology
+Topology updated: 18 switches, 44 links
+Computing paths for switches s1-s6 only
+[topology_manager] INFO: All core switches found in topology: [1, 2, 3, 4, 5, 6]
+[topology_manager] INFO: Filtered core switches: [1, 2, 3, 4, 5, 6]
+Computed paths for 6×5 ordered switch pairs → 60 path sets (340 total paths)
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+Monitoring already active
+Started graph statistics monitoring
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+
+=== MPTCP Flow Diagnostics ===
+Total MPTCP flows: 0
+
+No active MPTCP flows found
+
+==============================
+
+[FlowRateMonitor] MPTCP flow diagnostics logged to data/flow_rate_diagnostics/mptcp_flow_diagnostics__2025-10-11_12:29:49.json
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+Model saved to models/agent2/agent2_model_10-11_12-29.pt
+[agent2-interface-logging]: Saved model and metrics
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+
+=== MPTCP Flow Diagnostics ===
+Total MPTCP flows: 0
+
+No active MPTCP flows found
+
+==============================
+
+[FlowRateMonitor] MPTCP flow diagnostics logged to data/flow_rate_diagnostics/mptcp_flow_diagnostics__2025-10-11_12:29:49.json
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[FlowRateMonitor] WARN: No active MPTCP flows to update
+[MHG] Warning:  No active flows found, flow head will be empty
+[MHG] Warning:  No flow nodes found in Head 3, skipping new port head
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 1-2-path1
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[forwarding][Agent 1] found path_key: 1-2-path1
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 2-1-path2
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][packet_in_handler_MPTCP] before flow_lock To store MPTCP flow [MPTCP_FLOW]
+[Forwarding][packet_in_handler_MPTCP] with flow_lock To store MPTCP flow
+[Flow Rate Monitor] INFO: Requesting stats for datapath 1 after tracking cookie ID 1.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[FlowRateMonitor][update mptcp stats] Started tracking MPTCP flow: 996998712
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 1 and 2
+[Flow Rate Monitor] INFO: Requesting stats for datapath 1 after tracking cookie ID 2.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 1 and 2
+[Flow Rate Monitor] INFO: Requesting stats for datapath 1 after tracking cookie ID 3.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 1 and 2
+[Flow Rate Monitor] INFO: Requesting stats for datapath 1 after tracking cookie ID 4.
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 2-1-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 2-1-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 2-1-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 3-4-path1
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[forwarding][Agent 1] found path_key: 3-4-path1
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 4-3-path2
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][packet_in_handler_MPTCP] before flow_lock To store MPTCP flow [MPTCP_FLOW]
+[Forwarding][packet_in_handler_MPTCP] with flow_lock To store MPTCP flow
+[Flow Rate Monitor] INFO: Requesting stats for datapath 3 after tracking cookie ID 5.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 3 and 4
+[Flow Rate Monitor] INFO: Requesting stats for datapath 3 after tracking cookie ID 6.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 3 and 4
+[Flow Rate Monitor] INFO: Requesting stats for datapath 3 after tracking cookie ID 7.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 3 and 4
+[Flow Rate Monitor] INFO: Requesting stats for datapath 3 after tracking cookie ID 8.
+[Agent2_interface] No active MPTCP flows detected, skipping action selection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 4-3-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 4-3-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 4-3-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[FlowRateMonitor][update mptcp stats] Started tracking MPTCP flow: 2776461058
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 5-6-path2
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[forwarding][Agent 1] found path_key: 5-6-path2
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 6-5-path2
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][packet_in_handler_MPTCP] before flow_lock To store MPTCP flow [MPTCP_FLOW]
+[Forwarding][packet_in_handler_MPTCP] with flow_lock To store MPTCP flow
+[Flow Rate Monitor] INFO: Requesting stats for datapath 5 after tracking cookie ID 9.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 5 and 6
+[Flow Rate Monitor] INFO: Requesting stats for datapath 5 after tracking cookie ID 10.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 5 and 6
+[Flow Rate Monitor] INFO: Requesting stats for datapath 5 after tracking cookie ID 11.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+subtype: 1 MP_JOIN
+No available path found between switches.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+[Forwarding][Agent 1] Found 2 paths between 5 and 6
+[Flow Rate Monitor] INFO: Requesting stats for datapath 5 after tracking cookie ID 12.
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 6-5-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 6-5-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 6-5-path2
+[Forwarding][packet_in_handler_MPTCP] Start processing MPTCP packet
+Invalid MPTCP packet received
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[Forwarding][inspect_mptcp_packet] INFO: Start of MPTCP packet inspection
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+
+=== MPTCP Flow Diagnostics ===
+Total MPTCP flows: 3
+
+MPTCP Flow: 996998712...
+  Subflows: 4
+  Active: 4
+  Current: 7.00 Mbps
+  Average: 4.42 Mbps
+  Min/Max: 0.00/7.00 Mbps
+  Path distribution: {'1-2-path1': 2, '1-2-path2': 2}
+  Active subflows: 4
+  Active subflows: [1, 2, 3, 4]
+  No inactive subflows
+
+MPTCP Flow: 2776461058...
+  Subflows: 4
+  Active: 4
+  Current: 10.14 Mbps
+  Average: 5.07 Mbps
+  Min/Max: 0.00/10.14 Mbps
+  Path distribution: {'3-4-path1': 2, '3-4-path2': 2}
+  Active subflows: 4
+  Active subflows: [5, 6, 7, 8]
+  No inactive subflows
+
+MPTCP Flow: 2996588065 is inactive
+
+Total active MPTCP flows: 2
+
+==============================
+
+[FlowRateMonitor] MPTCP flow diagnostics logged to data/flow_rate_diagnostics/mptcp_flow_diagnostics__2025-10-11_12:29:49.json
+[FlowRateMonitor][update mptcp stats] Started tracking MPTCP flow: 2996588065
+[Agent2_interface] Selecting action with timeout protection
+[H_G_PPO-logging]: Port utilization for S11-port2: [0.3999584]
+[H_G_PPO-logging]: No-Op bias applied: -1.999792, Reason: 
+[H_G_PPO-logging]: Top 3 logits after bias: [0.008880160748958588, 0.007165217772126198, -1.9897197484970093]
+[H_G_PPO-logging]: New port features: [[0.9927896], [0.9855792], [1.0]], Node IDs: ['no_op', 'new_port_S11-port1', 'new_port_S11-port3'], Avg Utilization: 0.9927896
+[Agent2_interface] Action selection took 0.40 seconds
+[Agent2 interface] INFO: Migrating flow flow_S11-10 from switch_11 to port new_port_S11-port1
+[Agent2 interface] INFO: We are skipping checking if it is in mptcp_flows, since we are using cookie_id as flow_id
+[Agent2 interface] INFO: Validating reachability from switch_11 to 6
+[Topology Manager] Getting next switch for DPID 11 on port 1
+[Topology Manager] Link port table: {(8, 1): (1, 2), (7, 1): (1, 1), (12, 6): (2, 2), (8, 14): (3, 1), (10, 3): (1, 2), (3, 10): (2, 1), (4, 10): (2, 2), (15, 13): (2, 2), (1, 8): (2, 1), (13, 15): (2, 2), (1, 7): (1, 1), (5, 12): (2, 1), (10, 4): (2, 2), (12, 5): (1, 2), (12, 18): (3, 1), (14, 8): (1, 3), (7, 13): (3, 1), (13, 7): (1, 3), (18, 12): (1, 3), (17, 15): (2, 3), (11, 5): (1, 1), (11, 17): (3, 1), (11, 6): (2, 1), (17, 11): (1, 3), (16, 14): (2, 2), (16, 18): (3, 2), (9, 15): (3, 1), (16, 10): (1, 3), (9, 3): (1, 1), (2, 8): (2, 2), (2, 7): (1, 2), (6, 12): (2, 2), (9, 4): (2, 1), (5, 11): (1, 1), (15, 17): (3, 2), (6, 11): (1, 2), (14, 16): (2, 2), (18, 16): (2, 3), (7, 2): (2, 1), (15, 9): (1, 3), (3, 9): (1, 1), (4, 9): (1, 2), (8, 2): (2, 2), (10, 16): (3, 1)}
+[Topology Manager] WARN: Source DPID 5 is in the list of DPIDs to remove, cannot compute path
+[Agent2 interface] WARNING: No path found from 5 to 6
+[Agent2 interface] INFO: Flow flow_S11-10 migrated successfully to port new_port_S11-port1
+[agent2-interface-logging]: Successfully migrated flow flow_S11-10 to new port new_port_S11-port1 on switch switch_11 with path None and path_id None
+[agent2-interface-logging]: Flow migration validated successfully
+[Agent2_interface] Action execution took 0.40 seconds
+[Forwarding] INFO: Received IPv4 packet. Proceeding with flow setup.
+[forwarding][Agent 1] found path_key: 3-4-path1
