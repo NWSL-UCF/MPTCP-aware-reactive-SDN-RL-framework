@@ -288,17 +288,3 @@ Parts of this implementation are based on or adapted from existing research:
   - **DOI**: https://arxiv.org/abs/2208.00383
   - **GitHub**: https://github.com/GuetYe/DRL-M4MR
 
-- **Network Delay Module (`network_delay.py`)**: Adapted from the DRL-M4MR framework by Ye et al.
-  - **Paper**: "Deep reinforcement learning based multicast routing method for SDN"
-  - **Journal**: Future Generation Computer Systems, Volume 131, 2022, Pages 198-208
-  - **DOI**: https://doi.org/10.1016/j.future.2022.01.009
-  - **GitHub**: https://github.com/GuetYe/DRL-M4MR
-
-
-
-
-
-
-## Contact
-
-meshal.alruwisan@ucf.edu
