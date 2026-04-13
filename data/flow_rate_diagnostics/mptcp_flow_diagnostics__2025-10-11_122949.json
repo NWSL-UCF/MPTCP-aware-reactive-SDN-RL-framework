@@ -1,3 +1,0 @@
-{}
-{}
-{"996998712": {"subflows": 4, "active_subflows": 4, "current_rate_mbps": 7.002470026896147, "avg_rate_mbps": 4.417466847475257, "min_rate_mbps": 0.0, "max_rate_mbps": 7.002470026896147, "path_distribution": {"1-2-path1": 2, "1-2-path2": 2}}, "2776461058": {"subflows": 4, "active_subflows": 4, "current_rate_mbps": 10.138241149523111, "avg_rate_mbps": 5.0691205747615555, "min_rate_mbps": 0.0, "max_rate_mbps": 10.138241149523111, "path_distribution": {"3-4-path1": 2, "3-4-path2": 2}}, "2996588065": {"subflows": 4, "active_subflows": 0, "current_rate_mbps": 0, "avg_rate_mbps": 0, "min_rate_mbps": 0, "max_rate_mbps": 0, "path_distribution": {}}}
